@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { Note } from "../../models/Note"
-
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 interface NoteItemProps {
     note: Note,
@@ -9,10 +9,15 @@ interface NoteItemProps {
 
 const NoteItem = ({ note, onDelete }: NoteItemProps) => {
     return (
-        <TouchableOpacity style={styles.noteItem} onPress={() => onDelete(note.id)}>
-            <View>
-                <Text style={styles.noteText}>{note.text}</Text>
-                <Text style={styles.noteDate}>{note.createdAt.toLocaleString()}</Text>
+        <TouchableOpacity style={styles.noteItem}>
+            <View style={styles.noteContent}>
+                <View style={styles.textContainer}>
+                    <Text style={styles.noteText}>{note.text}</Text>
+                    <Text style={styles.noteDate}>{note.createdAt.toLocaleString()}</Text>
+                </View>
+                <TouchableOpacity onPress={() => onDelete(note.id)}>
+                    <Ionicons name="trash" size={24} color="red" />
+                </TouchableOpacity>
             </View>
         </TouchableOpacity>
     )
@@ -24,9 +29,6 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 10,
         marginBottom: 10,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -35,6 +37,15 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
+    },
+    noteContent: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+    },
+    textContainer: {
+        flex: 1,
+        marginRight: 10,
     },
     noteText: {
         fontSize: 16,

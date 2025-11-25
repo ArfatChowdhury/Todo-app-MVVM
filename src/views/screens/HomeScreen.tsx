@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
-import { Text, View } from "react-native"
+import { FlatList, Text, View } from "react-native"
 import { NoteViewModel } from "../../viewModels/NoteViewModel"
 import { Note } from "../../models/Note"
+import AddNoteForm from "../components/AddNoteForm"
+import NoteItem from "../components/NoteItem"
 
 
 
@@ -27,7 +29,23 @@ const HomeScreen = () => {
 
     return (
         <View>
-            <Text>HomeScreen</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center', marginBottom: 16 }}>My Todo App</Text>
+            <AddNoteForm onAddNote={handleAddNote} />
+
+            <FlatList
+                data={notes}
+                renderItem={({ item }) => (
+                    <NoteItem note={item} onDelete={handleDeleteNote} />
+                )}
+                keyExtractor={(item) => item.id}
+                contentContainerStyle={{ padding: 16 }}
+                showsVerticalScrollIndicator={false}
+                style={{ marginTop: 16 }}
+            />
+
+
         </View>
     )
 }
+
+export default HomeScreen

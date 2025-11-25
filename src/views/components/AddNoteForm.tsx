@@ -30,8 +30,8 @@ const AddNoteForm = ({ onAddNote }: AddNoteFormProps) => {
                     marginBottom: 10
                 }}
             />
-            <TouchableOpacity onPress={handleAddNote}>
-                <Text>Add Note</Text>
+            <TouchableOpacity style={{ backgroundColor: '#007AFF', padding: 10, borderRadius: 5 }} onPress={handleAddNote}>
+                <Text style={{ fontSize: 16, fontWeight: 'bold', textAlign: 'center', color: '#fff' }} >Add Note</Text>
             </TouchableOpacity>
         </View>
     )
