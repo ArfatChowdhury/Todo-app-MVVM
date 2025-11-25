@@ -13,4 +13,17 @@ export class NoteViewModel {
         this.notes = [newNote, ...this.notes]
         // this.notes.push(newNote)
     }
+
+    // delete note 
+    deleteNote(id: string): void {
+        this.notes = this.notes.filter(note => note.id !== id)
+    }
+
+    // get all notes 
+
+    getNotes(): Note[] {
+        return this.notes
+    }
+
 }
+
